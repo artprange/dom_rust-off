@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+        <form>
+            <div class="text">
+            <h1>Calcular a quantidade de tinta</h1>
+            <p>Não sabe o quanto comprar de tinta?
+            a gente te ajuda!<br>
+             Basta informar as medidas do cômodo que você quer pintar</p>
+            </div>
+            <div class="wrapper">
+                <div class="wall-wrapper">
+                    <label htmlFor="parede1">Parede 1</label>
+                    <input type="text" name="length1" id="length1" placeholder="largura" required />
+                    <input type="text" name="height1" id="height" placeholder="altura" required />
+                    <label htmlFor="janela">Janela</label>
+                    <input type="checkbox" name="janela" id="janela" value="janela" />
+                    <label htmlFor="porta">Porta</label>
+                    <input type="checkbox" name="porta" id="porta" value="porta" />
+                    <label class="result1">Area da parede 0 m²</label>
+                </div>
+                    
+                
+                <div class="wall-wrapper">
+                    <label htmlFor="length2">Parede 2</label>
+                    <input type="text" name="length2" id="length2" placeholder="largura" required />
+                    <input type="text" name="height2" id="heigh2" placeholder="altura" required />
+                    <label htmlFor="janela">Janela</label>
+                    <input type="checkbox" name="janela" id="janela" value="janela" />
+                    <label htmlFor="porta">Porta</label>
+                    <input type="checkbox" name="porta" id="porta" value="porta" />
+                   <label class="result1">Area da parede 0 m²</label>
+                   
+                </div>
+
+                    <div class="wall-wrapper">
+                    <label htmlFor="length3">Parede 3</label>
+                    <input type="text" name="length3" id="length3" placeholder="largura" required />
+                    <input type="text" name="height3" id="heigh3" placeholder="altura" required />
+                    <label htmlFor="janela">Janela</label>
+                    <input type="checkbox" name="janela" id="janela" value="janela" />
+                    <label htmlFor="porta">Porta</label>
+                    <input type="checkbox" name="porta" id="porta" value="porta" />
+                    <label class="result1">Area da parede 0 m²</label>
+                </div>
+
+                    <div class="wall-wrapper">
+                    <label htmlFor="length4">Parede 4</label>
+                    <input type="text" name="length4" id="length4" placeholder="largura" required />
+                    <input type="text" name="height4" id="height4" placeholder="altura" required />
+                    <label htmlFor="janela">Janela</label>
+                    <input type="checkbox" name="janela" id="janela" value="janela" />
+                    <label htmlFor="porta">Porta</label>
+                    <input type="checkbox" name="porta" id="porta" value="porta" />
+                    <label class="result1">Area da parede 0 m²</label>
+                    </div>
+
+                    <div class="quantidadeDeTinta">
+                    <h3 >Area total:</h3>
+                    <h3>Quantidade indicada de tinta: </h3>
+                    </div>
+
+            <button  type="submit">Calcular</button>  
+            
+        </div>
+ 
+
+
+            
+    </form>
+
+    <footer>
+    <span id="description"></span>
+    <h1 id="result"></h1>
+    </footer>
+</body>
+</html>
