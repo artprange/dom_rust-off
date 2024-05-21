@@ -1,208 +1,106 @@
-// const areaJanela = 2.4;
-// const areaPorta = 1.5;
+document.addEventListener('DOMContentLoaded', function() {
+    const areaJanela = 2.4;
+    const areaPorta = 1.5;
 
-// const form = document.getElementById("form");
+    const form = document.getElementById("form");
+    const heights = document.querySelectorAll(".height");
+    const lengths = document.querySelectorAll(".length");
+    const doors = document.querySelectorAll(".porta");
+    const windows = document.querySelectorAll(".janela");
 
-// const heights = document.querySelectorAll(".height");
-// const lengths = document.querySelectorAll(".length");
+    // Validating only numbers in inputs
+    const validateNumberInput = (input) => {
+        input.addEventListener('input', (event) => {
+            const numerosApenas = /\D+/g;
+            event.target.value = event.target.value.replace(numerosApenas, '');
+        });
+    };
 
+    heights.forEach(validateNumberInput);
+    lengths.forEach(validateNumberInput);
+    doors.forEach(validateNumberInput);
+    windows.forEach(validateNumberInput);
 
+    // Function to calculate the area of a single wall
+    const calculateWallArea = (length, height, numDoors, numWindows, wallNumber) => {
+        // Calculate the area of the wall
+        let wallArea = length * height;
 
+        // Calculate the total area of doors and windows
+        const totalDoorArea = numDoors * areaPorta;
+        const totalWindowArea = numWindows * areaJanela;
+        const totalDoorWindowArea = totalDoorArea + totalWindowArea;
 
-// const result1 = document.getElementById("result1");
-// const result2 = document.getElementById("result2");
-// const result3 = document.getElementById("result3");
-// const result4 = document.getElementById("result4");
-
-
-// //validando numeros apenas
-
-// heights.forEach(height => {
-//     height.addEventListener('input', () => {
-//         const numerosApenas = /\D+/g;
-//         height.value = height.value.replace(numerosApenas, '');
-//     });
-// });
-
-// lengths.forEach(length => {
-//     length.addEventListener('input', () => {
-//         const numerosApenas = /\D+/g;
-//         length.value = length.value.replace(numerosApenas, '');
-//     });
-// });
-
-
-// //evento de envio
-// form.onsubmit = (event) => {
-//     event.preventDefault();
-//     calculateAllWallAreas();
-// }
-
-
-// function setupEventListeners() {
-//     const inputs = document.querySelectorAll(".length, .height, input[type='checkbox']");
-    
-//     inputs.forEach(input => {
-//         input.addEventListener('input', calculateAllWallAreas);
-//     });
-
-//     inputs.forEach(input => {
-//         input.addEventListener('input', validateNumberInput);
-//     });
-// }
-
-// function validateNumberInput(event) {
-//     const input = event.target;
-//     const numerosApenas = /\D+/g;
-//     input.value = input.value.replace(numerosApenas, '');
-// }
-
-// function calculateAllWallAreas() {
-//     calculateWallArea("length1", "height1", "janela1", "porta1", "result1");
-//     calculateWallArea("length2", "height2", "janela2", "porta2", "result2");
-//     calculateWallArea("length3", "height3", "janela3", "porta3", "result3");
-//     calculateWallArea("length4", "height4", "janela4", "porta4", "result4");
-
-//     calculateTotalArea();
-// }
-
-// function calculateWallArea(lengthId, heightId, janelaId, portaId, resultId) {
-//     const length = parseFloat(document.getElementById(lengthId).value) || 0;
-//     const height = parseFloat(document.getElementById(heightId).value) || 0;
-
-//     let wallArea = length * height;
-
-//     const hasWindow = document.getElementById(janelaId).checked;
-//     const hasDoor = document.getElementById(portaId).checked;
-
-//     if (hasWindow) {
-//         wallArea -= areaJanela;
-//     }
-//     if (hasDoor) {
-//         wallArea -= areaPorta;
-//     }
-
-   
-// }
-
-// function calculateTotalArea() {
-//     let totalArea = 0;
-//     const results = document.querySelectorAll('.result');
-    
-//     results.forEach(result => {
-//         const areaText = result.textContent.match(/[\d.]+/);
-//         const area = areaText ? parseFloat(areaText[0]) : 0;
-//         totalArea += area;
-//     });
-
-//     document.getElementById("metragemFinal").textContent = "Area total: " + totalArea.toFixed(2) + " m²";
-//     document.getElementById("litrosDeTinta").textContent = "Quantidade indicada de tinta: " + (totalArea / 10).toFixed(2) + " litros";
-// }
-
-// setupEventListeners();
-
-
-
-// melhorar css
-// aplicar a regra de negócio na litragem de tinta
-//fazer o botão reset, funcionar
-
-
-
-const areaJanela = 2.4;
-const areaPorta = 1.5;
-
-const form = document.getElementById("form");
-
-const heights = document.querySelectorAll(".height");
-const lengths = document.querySelectorAll(".length");
-
-// Validate numbers only in inputs
-heights.forEach(height => {
-    height.addEventListener('input', (event) => {
-        const numerosApenas = /\D+/g;
-        event.target.value = event.target.value.replace(numerosApenas, '');
-    });
-});
-
-lengths.forEach(length => {
-    length.addEventListener('input', (event) => {
-        const numerosApenas = /\D+/g;
-        event.target.value = event.target.value.replace(numerosApenas, '');
-    });
-});
-
-
-form.onsubmit = (event) => {
-    event.preventDefault();
-    calculateAllWallAreas();
-}
-
-// botão reset
-document.querySelector(".reset-btn").addEventListener('click', () => {
-    form.reset();
-    document.getElementById("metragemFinal").textContent = "Area total:";
-    document.getElementById("litrosDeTinta").textContent = "Quantidade indicada de tinta:";
-    document.querySelectorAll('.result').forEach(result => result.textContent = "Area da parede 0 m²");
-});
-
-// Calculate the area for all walls
-function calculateAllWallAreas() {
-    calculateWallArea("length1", "height1", "janela1", "porta1", "result1");
-    calculateWallArea("length2", "height2", "janela2", "porta2", "result2");
-    calculateWallArea("length3", "height3", "janela3", "porta3", "result3");
-    calculateWallArea("length4", "height4", "janela4", "porta4", "result4");
-
-    calculateTotalArea();
-}
-
-// Calculating the wall area
-function calculateWallArea(lengthId, heightId, janelaId, portaId, resultId) {
-    const length = parseFloat(document.getElementById(lengthId).value) || 0;
-    const height = parseFloat(document.getElementById(heightId).value) || 0;
-
-    let wallArea = length * height;
-
-    const hasWindow = document.getElementById(janelaId).checked;
-    const hasDoor = document.getElementById(portaId).checked;
-
-    // Subtracting the area of the window and door if they exist
-    if (hasWindow) {
-        wallArea -= areaJanela;
-    }
-    if (hasDoor) {
-        wallArea -= areaPorta;
-    }
-
-    // Validate the wall area
-    if (wallArea < 1 || wallArea > 50) {
-        alert("A parede deve ter uma área entre 1 e 50 metros quadrados.");
-        document.getElementById(resultId).textContent = "Área inválida";
-        return;
-    }
-
-    document.getElementById(resultId).textContent = "Área da parede: " + wallArea.toFixed(2) + " m²";
-}
-
-// Calculate the total area of all walls
-function calculateTotalArea() {
-    let totalArea = 0;
-    const results = document.querySelectorAll('.result');
-    
-    results.forEach(result => {
-        const areaText = result.textContent.match(/[\d.]+/);
-        const area = areaText ? parseFloat(areaText[0]) : 0;
-        if (!isNaN(area)) {
-            totalArea += area;
+        // Ensure that the total area of doors and windows is not more than 50% of the wall area
+        if (totalDoorWindowArea >= 0.5 * wallArea) {
+            alert(`A área das portas e janelas na parede ${wallNumber} excede 50% da área da parede.`);
+            return 0; // Return 0 as the wall area to prevent further calculations
         }
-    });
 
-    const metragemFinal = document.getElementById("metragemFinal");
-    const litrosDeTinta = document.getElementById("litrosDeTinta");
+        // Subtract the area of doors and windows from the wall area
+        wallArea -= totalDoorWindowArea;
 
-    metragemFinal.textContent = "Área total: " + totalArea.toFixed(2) + " m²";
-    litrosDeTinta.textContent = "Quantidade indicada de tinta: " + (totalArea / 5).toFixed(2) + " litros";
+        // Ensure that the wall area is within the constraints (1 sq meter <= wall area <= 50 sq meters)
+        wallArea = Math.max(1, Math.min(wallArea, 50));
 
+        // Check if the wall area exceeds 50 sq meters
+        if (wallArea === 50 && wallArea !== (length * height)) {
+            alert(`A área da parede ${wallNumber} ultrapassa o limite de 50 metros quadrados. Será considerado o limite máximo.`);
+        }
 
- 
-}
+        return wallArea;
+    };
+
+    // Function to handle form submission
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        // Get all the input values for each wall
+        const wallInputs = [];
+        for (let i = 1; i <= 4; i++) {
+            const length = parseFloat(document.getElementById(`length${i}`).value);
+            const height = parseFloat(document.getElementById(`height${i}`).value);
+            const numDoors = parseFloat(document.getElementById(`porta${i}`).value) || 0;
+            const numWindows = parseFloat(document.getElementById(`janela${i}`).value) || 0;
+
+            wallInputs.push({ length, height, numDoors, numWindows });
+        }
+
+        // Calculate the total area and total paint needed
+        let totalArea = 0;
+        wallInputs.forEach((wall, index) => {
+            totalArea += calculateWallArea(wall.length, wall.height, wall.numDoors, wall.numWindows, index + 1);
+        });
+
+        const paintNeeded = totalArea / 5; // 1 liter covers 5 sq meters
+
+        // Display the total area and calculated amount of paint on the webpage
+        const metragemFinal = document.getElementById("metragemFinal");
+        const litrosDeTinta = document.getElementById("litrosDeTinta");
+
+        metragemFinal.textContent = `Área total: ${totalArea.toFixed(2)} metros quadrados`;
+        litrosDeTinta.textContent = `Quantidade indicada de tinta: ${paintNeeded.toFixed(2)} litros`;
+
+        // Make the result section visible
+        metragemFinal.style.display = 'block';
+        litrosDeTinta.style.display = 'block';
+    };
+
+    // Attach the form submission event listener
+    form.addEventListener("submit", handleSubmit);
+
+    // Function to handle reset button click
+    const handleReset = () => {
+        // Clear all input fields
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach(input => input.value = '');
+
+        // Clear the result display
+        document.getElementById("metragemFinal").textContent = '';
+        document.getElementById("litrosDeTinta").textContent = '';
+    };
+
+    // Attach the reset button click event listener
+    const resetButton = document.querySelector('.reset-btn');
+    resetButton.addEventListener('click', handleReset);
+});

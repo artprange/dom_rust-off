@@ -103,10 +103,11 @@
     border: 1px solid #4a5dcd;
   }
 
-
-.quantidadeDeTinta {
-    
+.footer{
+  display: flex;
+  flex-direction: column;
 }
+
 
   .wall-wrapper{
     display: flex;   
@@ -118,6 +119,12 @@
   }
   
 
+  .btn-wrapper{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+  }
 
   
   form .text{
@@ -130,7 +137,7 @@
   }
 
 
-.btn-wrapper{
+.footer{
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -205,10 +212,7 @@ button {
   
     overflow-y: scroll;
   }
-  
-  .show-result {
-    display: block;
-  }
+
   
   footer span {
     color: #7d8dec;

@@ -7,72 +7,61 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <section>
     
     <form id="form">
-    <div class="text">
-        <h1>Calcular a quantidade de tinta</h1>
-        <p>Não sabe o quanto comprar de tinta?
-        a gente te ajuda!<br>
-        Basta informar as medidas do cômodo que você quer pintar</p>
-    </div>
-    <div class="wrapper">
-        <div id="grupo1" class="wall-wrapper">
-            <label for="parede1">Parede 1</label>
-            <input type="text" name="length1" id="length1" class="length" placeholder="largura" required />
-            <input type="text" name="height1" id="height1" class="height" placeholder="altura" required />
-            <label for="janela1">Janela</label>
-            <input type="checkbox" name="janela1" id="janela1" value="janela" />
-            <label for="porta1">Porta</label>
-            <input type="checkbox" name="porta1" id="porta1" value="porta" />
-            <label id="result1" class="result">Area da parede 0 m²</label>
+        <div class="text">
+            <h1>Calcular a quantidade de tinta</h1>
+            <p>Não sabe o quanto comprar de tinta?
+            a gente te ajuda!<br>
+            Basta informar as medidas do cômodo que você quer pintar</p>
         </div>
-        <div id="grupo2" class="wall-wrapper">
-            <label for="parede2">Parede 2</label>
-            <input type="text" name="length2" id="length2" class="length" placeholder="largura" required />
-            <input type="text" name="height2" id="height2" class="height" placeholder="altura" required />
-            <label for="janela2">Janela</label>
-            <input type="checkbox" name="janela2" id="janela2" value="janela" />
-            <label for="porta2">Porta</label>
-            <input type="checkbox" name="porta2" id="porta2" value="porta" />
-            <label id="result2" class="result">Area da parede 0 m²</label>
+        <div class="wrapper">
+            <div id="grupo1" class="wall-wrapper">
+                <label for="parede1">Parede 1</label>
+                <input type="text" name="length1" id="length1" class="length" placeholder="Largura" required />
+                <input type="text" name="height1" id="height1" class="height" placeholder="Altura" required />           
+                <input type="text" name="janela1" id="janela1"  class="janela" placeholder="Quantidade de janelas"  />
+                <input type="text" name="porta1" id="porta1" class="porta" placeholder="Quantidade de portas"  /> 
+               
+            </div>
+            <div id="grupo2" class="wall-wrapper">
+                <label for="parede2">Parede 2</label>
+                <input type="text" name="length2" id="length2" class="length" placeholder="Largura" required />
+                <input type="text" name="height2" id="height2" class="height" placeholder="Altura" required />
+                <input type="text" name="janela2" id="janela2" class="janela" placeholder="Quantidade de janelas"  />
+                <input type="text" name="porta2" id="porta2" class="porta" placeholder="Quantidade de portas"  />
+              
+            </div>
+            <div id="grupo3" class="wall-wrapper">
+                <label for="parede3">Parede 3</label>
+                <input type="text" name="length3" id="length3" class="length" placeholder="Largura" required />
+                <input type="text" name="height3" id="height3" class="height" placeholder="Altura" required />
+                <input type="text" name="janela3" id="janela3" class="janela" placeholder="Quantidade de janelas"  />
+                <input type="text" name="porta3" id="porta3" class="porta" placeholder="Quantidade de portas"  />
+           
+            </div>
+            <div id="grupo4" class="wall-wrapper">
+                <label for="parede4">Parede 4</label>
+                <input type="text" name="length4" id="length4" class="length" placeholder="Largura" required />
+                <input type="text" name="height4" id="height4" class="height" placeholder="Altura" required />
+                <input type="text" name="janela4" id="janela4" class="janela" placeholder="Quantidade de janelas"  />
+                <input type="text" name="porta4" id="porta4" class="porta" placeholder="Quantidade de portas"  />
+               
+            </div>
         </div>
-        <div id="grupo3" class="wall-wrapper">
-            <label for="parede3">Parede 3</label>
-            <input type="text" name="length3" id="length3" class="length" placeholder="largura" required />
-            <input type="text" name="height3" id="height3" class="height" placeholder="altura" required />
-            <label for="janela3">Janela</label>
-            <input type="checkbox" name="janela3" id="janela3" value="janela" />
-            <label for="porta3">Porta</label>
-            <input type="checkbox" name="porta3" id="porta3" value="porta" />
-            <label id="result3" class="result">Area da parede 0 m²</label>
+        <div class="footer">
+            <div class="btn-wrapper">
+            <button id="submit" type="submit">Calcular</button>
+            <button type="button" class="reset-btn">Resetar</button>
         </div>
-        <div id="grupo4" class="wall-wrapper">
-            <label for="parede4">Parede 4</label>
-            <input type="text" name="length4" id="length4" class="length" placeholder="largura" required />
-            <input type="text" name="height4" id="height4" class="height" placeholder="altura" required />
-            <label for="janela4">Janela</label>
-            <input type="checkbox" name="janela4" id="janela4" value="janela" />
-            <label for="porta4">Porta</label>
-            <input type="checkbox" name="porta4" id="porta4" value="porta" />
-            <label id="result4" class="result">Area da parede 0 m²</label>
-        </div>
-    </div>
-    <div class="btn-wrapper">
-        <button type="submit">Calcular</button>
-        <button type="button" class="reset-btn">Resetar</button>
-    </div>
-</form>
-<div class="quantidadeDeTinta">
-    <h3 id="metragemFinal">Area total:</h3>
-    <h3 id="litrosDeTinta">Quantidade indicada de tinta:</h3>
-</div>
-    
-    
-
-    <footer>
-    <span id="description"></span>
-    <h1 id="result"></h1>
-    </footer>
+                <span id="description"></span>
+                <h3 id="metragemFinal">Area total:</h3>
+                <h3 id="litrosDeTinta">Quantidade indicada de tinta:</h3>
+        </div>       
+    </form>
+</section> 
     <script src="scripts.js"></script>
 </body>
 </html>
