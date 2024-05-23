@@ -100,34 +100,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		const paintNeeded = totalArea / 5; //
 
-		// Calculate the number of paint cans needed based on the paintNeeded
-		const paintCanSizes = [0.5, 2.5, 3.6, 18]; // Paint can sizes in liters
-		let minCansNeeded = Infinity;
-		let minCanSize = 0;
-		paintCanSizes.forEach((size) => {
-			const cansNeeded = Math.ceil(paintNeeded / size);
-			if (cansNeeded < minCansNeeded) {
-				minCansNeeded = cansNeeded;
-				minCanSize = size;
-			}
-		});
+		// calculate the number of paint cans needed 
+		const paintCanSizes = [0.5, 2.5, 3.6, 18]; 
 
-		// Adjust the minimum number of cans needed to ensure it's a valid size
-		let adjustedMinCansNeeded = minCansNeeded;
-		let adjustedMinCanSize = minCanSize;
-		for (
-			let i = paintCanSizes.indexOf(minCanSize) + 1;
-			i < paintCanSizes.length;
-			i++
-		) {
-			if (paintNeeded <= paintCanSizes[i]) {
-				adjustedMinCansNeeded = 1;
-				adjustedMinCanSize = paintCanSizes[i];
-				break;
-			}
-		}
+		// calculating the necessary ammount
+		const findOptimalCans = (paintNeeded, canSizes) => {
+			let remainingPaint = paintNeeded;
+			const canCounts = {};
 
-		// displaying on the DOM the amount of paint and sq meters
+			// sorting up the cans, so it will prioritise the larger ones first
+			canSizes.sort((a, b) => b - a);
+
+			canSizes.forEach(size => {
+				canCounts[size] = Math.floor(remainingPaint / size);
+				remainingPaint %= size;
+			});
+
+			// if needed, it will throw the smallest possibvle
+			if (remainingPaint > 0) {
+				canCounts[canSizes[canSizes.length - 1]]++;
+			}
+
+			return canCounts;
+		};
+
+		const optimalCans = findOptimalCans(paintNeeded, paintCanSizes);
+
+		// displaying on the DOM the amount of paint, sq meters and ammount of cans
 		const metragemFinal = document.getElementById("metragemFinal");
 		const litrosDeTinta = document.getElementById("litrosDeTinta");
 		const qtdLatas = document.getElementById("qtdLatas");
@@ -135,13 +134,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		metragemFinal.textContent = `Área total: ${totalArea.toFixed(
 			2
 		)} metros quadrados`;
-		litrosDeTinta.textContent = `Quantidade indicada de tinta: ${paintNeeded.toFixed(
+		litrosDeTinta.textContent = `Quantidade de tinta necessária: ${paintNeeded.toFixed(
 			2
 		)} litros`;
 
 		// Display the minimum amount of paint cans required with their size
-		qtdLatas.innerHTML = `<h3>Quantidade mínima de latas de tinta necessárias:</h3>`;
-		qtdLatas.innerHTML += `<p>${adjustedMinCanSize} L: ${adjustedMinCansNeeded} latas</p>`;
+		qtdLatas.innerHTML = `<h3>Latas sugeridas:</h3>`;
+		Object.keys(optimalCans).forEach(size => {
+			if (optimalCans[size] > 0) {
+				qtdLatas.innerHTML += `<p>${size} L: ${optimalCans[size]} latas</p>`;
+			}
+		});
 
 		// making the result visible
 		metragemFinal.style.display = "block";
